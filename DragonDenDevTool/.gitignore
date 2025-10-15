@@ -98,6 +98,10 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.py
+NuGet.Config
+ToDo.md
+/.idea
 
 # Chutzpah Test files
 _Chutzpah*
