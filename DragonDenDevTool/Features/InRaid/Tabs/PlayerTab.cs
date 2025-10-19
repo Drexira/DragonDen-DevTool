@@ -26,8 +26,8 @@ public sealed class PlayerTab : IDevTab
     {
         _s = s;
         _players = players ?? new PlayerService();
-        _godMode = true;
-        _players.SetGodMode(true);
+        _godMode = Settings.GodModeOnByDefault.Value;
+        _players.SetGodMode(_godMode);
         _players.ApplyToggles();
     }
 

@@ -15,6 +15,7 @@ internal class Settings
 
     public static ConfigEntry<bool> DebugMode { get; set; }
     public static ConfigEntry<KeyboardShortcut> ToggleUI { get; set; }
+    public static ConfigEntry<bool> GodModeOnByDefault  { get; set; }
     public static ConfigEntry<float> UpdateInterval { get; private set; }
 
     public static void Init(ConfigFile config)
@@ -25,6 +26,9 @@ internal class Settings
         ConfigEntries.Add(ToggleUI = config.Bind(Keys, "Toggle UI", new KeyboardShortcut(KeyCode.Insert),
             new ConfigDescription(
                 "The key to open the Dev Tool UI.", null, new ConfigurationManagerAttributes(), true)));
+        
+        ConfigEntries.Add(GodModeOnByDefault = config.Bind(UI, "Enable Godmode on Raid Enter", true, new ConfigDescription(
+            "Enabling this will give you God Mode on each raid you enter.",  null, new ConfigurationManagerAttributes(), true)));
 
         ConfigEntries.Add(UpdateInterval = config.Bind(UI, "Update Interval (sec)", 0.25f,
             new ConfigDescription("How often the UI refreshes dynamic data (player pos, bots list).", null, new ConfigurationManagerAttributes(), true)));
@@ -33,6 +37,7 @@ internal class Settings
         ToggleUI.Subscribe(_ => {});
         UpdateInterval.Subscribe(_ => {});
         DebugMode.Subscribe(_ => {});
+        GodModeOnByDefault.Subscribe(_ => {});
     
         RecalcOrder();
     }
